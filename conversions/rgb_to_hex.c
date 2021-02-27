@@ -1,5 +1,6 @@
 #include<stdio.h>
-int i=0;
+#include<string.h>
+int j=0;
 int rgb(int r, int g, int b, char *output) {
 if(r > 255)
  r = 255;
@@ -10,6 +11,7 @@ b = 255;
 convertor(r);
 convertor(g);
 convertor(b);
+
 printf("\n");
 
 }
@@ -32,18 +34,20 @@ while(num!=0) {
 }
 
 if(i==2) {
-  printf("%c",hex[0]);
-  printf("%c",hex[1]);
-
+printf("%c",hex[0]);
+printf("%c",hex[1]);  
 }
 if(i==0) {
-  printf("%d",0);
-  printf("%d",0);
+  hex[0] = 48;
+  hex[1] = 48;
+  printf("%c",hex[0]);
+  printf("%c",hex[1]);
 }
+return hex;
 }
 
 int main() {
-char output[6];
+char output[7];
  rgb(255, 255, 255, output);
  rgb(255, 255, 300, output);
  rgb(0, 0, 0, output);
