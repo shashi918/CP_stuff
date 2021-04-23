@@ -12,7 +12,7 @@ size_t duplicate_count(const char *text) {
    {
       if(text[i]>='A' && text[i]<='Z')
       map[(size_t)text[i]+32]+= 1;
-      else
+      else if()
       map[(size_t)text[i]]+= 1;
    }
    for (int i = 0; i < 255; i++)

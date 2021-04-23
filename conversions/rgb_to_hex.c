@@ -1,21 +1,26 @@
 #include<stdio.h>
 #include<string.h>
+void convertor(int,char*);
 int j=0;
 int rgb(int r, int g, int b, char *output) {
+  j =0;
 if(r > 255)
  r = 255;
  if(g > 255)
 g = 255;
 if(b > 255)
 b = 255;
-convertor(r);
-convertor(g);
-convertor(b);
-
+convertor(r,output);
+convertor(g,output);
+convertor(b,output);
 printf("\n");
-
+while(*output !='\0') {
+  printf("%c",*output);
+  output++;
 }
-void convertor(int num) {
+}
+
+void convertor(int num,char* output) {
   char hex[2];
 int i = 0; 
 while(num!=0) {
@@ -34,23 +39,30 @@ while(num!=0) {
 }
 
 if(i==2) {
-printf("%c",hex[0]);
-printf("%c",hex[1]);  
+output[j] =hex[0];
+j++;
+output[j] =hex[0];
+j++;  
+}
+if(i==1) {
+  hex[0] = [0];
 }
 if(i==0) {
   hex[0] = 48;
   hex[1] = 48;
-  printf("%c",hex[0]);
-  printf("%c",hex[1]);
+  output[j] =hex[0];
+j++;
+output[j] =hex[0];
+j++;  
 }
-return hex;
 }
 
 int main() {
-char output[7];
+char output[19];
  rgb(255, 255, 255, output);
  rgb(255, 255, 300, output);
  rgb(0, 0, 0, output);
  rgb(148, 0, 211, output);
+ rgb(1,2,3,output);
 
 }
