@@ -1,40 +1,50 @@
-/**
- * max circular sub-array function tkas the array and no 
- * of elements algorithm is used is kadane algorithm 
- */
-#include <iostream>  
-int CircularSubarraySum(int arr[], int num)
+#include <iostream>
+#include <vector>
+#include <iterator>
+#include <algorithm>
+using namespace std;
+bool comp(int a, int b)
 {
-    int max_sum = 0;
-    int curr_sum;
-   for (int i = 0; i <num; i++)
-   {
-       curr_sum = 0;
-       for (int j = i; j < num+i; j++)
-       {
-           curr_sum = curr_sum + arr[j%num];
-           if(curr_sum < 0)
-               curr_sum = 0;
-            if(max_sum < curr_sum)
-           max_sum = curr_sum;
-       }
-   }
-   if(max_sum == 0)
-   {
-       max_sum = arr[0];
-       for(int i = 0; i < num-1; i++)
-        if(max_sum < arr[i+1])
-        {
-            max_sum = arr[i+1];
-        }
-   }
-   return max_sum;
+    return (a > b);
+}
+int kadane(vector<int>&);
+int maxSubarraySumCircular(vector<int>& nums) {
+    int max_kadane = kadane(nums);
+    if (max_kadane < 0)
+        return max_kadane;
+    else {
+        int max_wrap = 0;
+    for (auto i = nums.begin(); i < nums.end(); i++)
+    {
+        max_wrap += *i;
+        *i = -(*i);
+    }
+    max_wrap = max_wrap + kadane(nums);
+    return (max_wrap > max_kadane) ? max_wrap : max_kadane;
+    }
 }
 
-int main()
-{
-int arr[] = {-2,-3, -1};
-int n = sizeof(arr) / sizeof(arr[0]);
-int c = CircularSubarraySum(arr, n);
-printf("%d",c);
+int kadane(vector<int>& nums) {
+    int max_so_far = 0;
+    int max_current = 0;
+    std::vector<int>::iterator it;
+    for ( it = nums.begin(); it < nums.end(); it++)
+    {
+       max_current += *it;
+       if(max_so_far < max_current)
+            max_so_far = max_current;
+        if(max_current < 0)
+            max_current = 0;
+    }
+    if(max_so_far <= 0)
+        max_so_far = *min_element(nums.begin(),nums.end(),comp);
+    return max_so_far;
 }
+
+int main() {
+    std::vector<int> v ={1,-2,3,-2};
+    int n = maxSubarraySumCircular(v);
+    printf("%d\n",n);
+    return 0;
+}
+
