@@ -1,4 +1,4 @@
-# <div align="center"> shashi codewars Stuffs </div>
+# <div align="center"> CP stuff </div>
 My repo for every codewars problems I found a solution for.
 It's all written in either c or C++.
 
