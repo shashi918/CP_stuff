@@ -1,12 +1,7 @@
+def lengthOfLastWord(s: str) -> int:
+    split_string = s.split(" ")
+    split_string = [splits for splits in split_string if splits not in [' ', '']]
+    print(split_string)
+    return len(split_string[len(split_string)-1])
 
-from typing import List
-def plusOne(digits: List[int]) -> List[int]:
-    total = 0
-    for digit in digits:
-        total = total * 10 + digit
-
-    total = total + 1
-    digits = [int(digit) for digit in str(total)]
-    print(digits)
-
-plusOne([1,2,3])
+print(lengthOfLastWord("   fly me   to   the moon  "))
